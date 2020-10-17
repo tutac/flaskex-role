@@ -1,0 +1,36 @@
+- hosts: all
+  tasks:
+
+  - name: Install prerequisites
+    yum:
+      name:
+      - vim
+      - git
+      - wget
+      - unzip
+      state: present
+  
+  - name: Update hostname
+    import_role:
+      name: ansible-role-hostname
+    vars:
+      server_name: "{{ inventory_hostname }}"
+  
+  - name: Install Python 
+    import_role:
+      name: ansible-roles-python
+
+  - name: Clone Repos
+    import_role:
+      name: clone-role-repo
+
+  - name: Requiremments and Change Ownership
+    import_role:
+        name: reqsandowns-roles
+
+  - name: run my script!
+    shell: 'nohup python3 Flaskex/app.py &'
+
+  
+ 
+    

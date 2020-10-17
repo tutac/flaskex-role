@@ -1,0 +1,12 @@
+---
+- name: Clone a repo with separate git directory
+  git:
+    repo: https://github.com/ikambarov/Flaskex.git 
+    dest: /home/ubuntu/Flaskex/
+  when:  ansible_os_family  == 'Debian'
+
+- name: Clone a repo with separate git directory
+  git:
+    repo: https://github.com/ikambarov/Flaskex.git
+    dest: /home/centos/Flaskex/
+  when:  ansible_os_family   == 'RedHat'
